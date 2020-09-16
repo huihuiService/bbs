@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<!-- 导航栏 -->
+<nav th:fragment="header" class="navbar sticky-top navbar-expand-lg navbar-light"
+     style="background-color: #ffffff;box-shadow: 0px -2px 10px #d0cccc;">
+    <div class="container">
+        <!--标题-->
+        <a class="navbar-brand">
+            IT社区
+        </a>
+        <!--小屏幕下拉响应-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- 导航  -->
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+                <li th:class="${activeUrl=='index.html'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/index}">首页 </a>
+                </li>
+                <li th:class="${activeUrl=='question'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/question}">技术问答 </a>
+                </li>
+                <li th:class="${activeUrl=='blog'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/blog}">文章 </a>
+                </li>
+
+                <li th:class="${activeUrl=='activity'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/toActivity}">活动 </a>
+                </li>
+
+                <li th:class="${activeUrl=='recuruitment'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/toRecruitment}">招聘 </a>
+                </li>
+
+
+
+
+            </ul>
+
+            <!--如果未登录-->
+            <div th:if="${session.USER_INFO} eq null">
+                <a class="btn btn-sm btn-primary" th:href="@{/login}" role="button">
+                    <svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    登录
+                </a>
+            </div>
+
+            <!--如果已登录-->
+            <div th:if="${session.USER_INFO} ne null">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a  style="color: rgba(0,0,0,.5);text-decoration: none" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${session.USER_INFO.username}"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{'/userinfo/setting/'+${session.USER_INFO.getId()}}">个人信息</a>
+                            <a class="dropdown-item" th:href="@{'/userinfo/pwd/'+${session.USER_INFO.getId()}}">修改密码</a>
+                            <a class="dropdown-item" th:href="@{'/logout/'+${session.USER_INFO.getId()}}">注销</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>首页</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div th:replace="~{common/header::header(activeUrl='index.html')}"></div>
+
+<main role="main">
+    <div class="jumbotron" style="background-color: #ffffff;box-shadow: 0px -2px 10px #d0cccc inset;">
+        <div class="container">
+            <form class="form-signin" th:action="@{/login}" method="get" >
+
+                <img class="mb-4" th:src="@{/images/logo/logo7272.jpg}" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">
+                    <p th:text="${registerMsg}" style="color: red"></p>
+                    拜拜了
+                </h1>
+
+                <div th:if="${session.USER_INFO} ne null" >
+                    <span th:text="${session.USER_INFO.username}"></span>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+
+    </div>
+</main>
+
+<div th:replace="~{common/footer::footer}"></div>
+
+<a class="to-top">返回顶部</a>
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/toTop.js}"></script>
+
+</body>
+</html>
