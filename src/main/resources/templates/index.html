@@ -7,6 +7,45 @@
     <style>
         /*.img-size{ width: 500px; height: 500px;}*/
         .img-size{ width: 100%; height: 100%;}
+
+        /*标题样式*/
+        p{
+            text-align: center;
+            font-size: 25px;
+            color: cadetblue;
+            font-family: fantasy;
+
+        }
+
+        .imgBox{
+            /*border-top: 2px solid cadetblue;*/
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+
+        }
+
+        .imgBox img{
+            width: 700px;
+            height: 500px;
+            margin: 0 auto;
+            padding-top: 30px;
+
+        }
+
+        .img1{
+            display: block;
+            /*!important; width: 800px;*/
+        }
+
+        .img2{
+            display: none;
+        }
+
+        .img3{
+            display: none;
+        }
+
     </style>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
 </head>
@@ -33,10 +72,18 @@
         <div class="container" style="text-align: center;">
 <!--                <p style="font-size: 34px;">飞速发展的科技，社区会使我们更加强大，FATING</p>-->
                 <div>
-                    <img style="" class="img-size" src="/images/logo/index_01.jpg" />
+<!--                    <img style="" class="img-size" src="/images/logo/index_01.jpg" />-->
 <!--                    <img style="margin-right: 50px;" class="img-size" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2537528830,3381629671&fm=15&gp=0.jpg" />-->
 <!--                    <img class="img-size" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600196680627&di=96df071bf651431ea79d75608ef343c2&imgtype=0&src=http%3A%2F%2Fpic.vjshi.com%2F2018-05-28%2F15a4b6cac0d68440b647b614a84746c8%2F00004.jpg%3Fx-oss-process%3Dstyle%2Fwatermark" />-->
 <!--                    <img class="img-size" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600196680627&di=0c3f420569ac47b77fb7e6619918f1cc&imgtype=0&src=http%3A%2F%2Fpic23.photophoto.cn%2F20120613%2F0020033036551471_b.jpg" />-->
+
+                    <div class="imgBox">
+                        <img class="img-slide img1" src="images/logo/index_01.jpg" alt="1">
+                        <img class="img-slide img2" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2537528830,3381629671&fm=15&gp=0.jpg" alt="2">
+<!--                        <img class="img-slide img3" src="images/3.jpg" alt="3">-->
+                        <img class="img-slide img3" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600196680627&di=96df071bf651431ea79d75608ef343c2&imgtype=0&src=http%3A%2F%2Fpic.vjshi.com%2F2018-05-28%2F15a4b6cac0d68440b647b614a84746c8%2F00004.jpg%3Fx-oss-process%3Dstyle%2Fwatermark" alt="3">
+                    </div>
+
                 </div>
         </div>
     </div>
@@ -72,6 +119,23 @@
 <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/toTop.js}"></script>
+
+<script>
+    var index=0;
+    //改变图片
+    function ChangeImg() {
+        index++;
+        var a=document.getElementsByClassName("img-slide");
+        if(index>=a.length) index=0;
+        for(var i=0;i<a.length;i++){
+            a[i].style.display='none';
+        }
+        a[index].style.display='block';
+    }
+    //设置定时器，每隔两秒切换一张图片
+    setInterval(ChangeImg,2000);
+
+</script>
 
 </body>
 </html>
